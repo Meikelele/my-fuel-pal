@@ -1,0 +1,4 @@
+CREATE TABLE fuel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100)
+);
