@@ -14,5 +14,7 @@
             "username": "michalbak",
             "askForPassword": true
         }
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.compile.nullAnalysis.mode": "disabled"
 }
