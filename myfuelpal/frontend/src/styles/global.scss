@@ -1,0 +1,31 @@
+@import './_variables';
+
+html
+{
+    font-size: 10px;
+    color: $blackShadeHeader;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+body{
+    background-color: $backgroundColour;
+}
+
+.header {
+    font-size: $headerFontSize;
+    font-weight: $headerFontSize;
+    color: $blackShadeHeader
+}
+
+.subtext {
+    font-size: $subtextFontSize;
+    color: $grayShadeSubtext;
+    
+}
+

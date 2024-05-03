@@ -1,0 +1,27 @@
+.button, .button__signup, .button__facebook, .button__login {
+  background-color: orangered;
+  width: 27rem;
+  height: 5rem;
+  border-radius: 1rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: beige;
+  border: 0;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+.button__login {
+  background-color: #18CE2A;
+}
+.button__facebook {
+  background-color: #3B5998;
+}
+.button__signup {
+  background-color: #FE904B;
+}
+.button:active, .button__login:active, .button__facebook:active, .button__signup:active {
+  transform: scale(0.98);
+}
+.button:hover, .button__login:hover, .button__facebook:hover, .button__signup:hover {
+  transform: scale(0.98);
+}/*# sourceMappingURL=button.css.map */

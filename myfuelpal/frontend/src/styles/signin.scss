@@ -1,0 +1,15 @@
+@import './mixins';
+
+.signin {
+    @include flexCenter(column);
+    height: 100vh;
+
+    &__form {
+        @include flexCenter(column);
+
+    }
+
+    .gap {
+        height: 2rem;
+    }
+}

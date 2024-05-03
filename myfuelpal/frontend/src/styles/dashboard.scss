@@ -1,0 +1,13 @@
+@import './_mixins';
+@import './_variables';
+
+.dashboard{
+    @include flexStart(row);
+
+    .content {
+        display: flex;
+        flex-direction: column;
+                
+    }
+
+}

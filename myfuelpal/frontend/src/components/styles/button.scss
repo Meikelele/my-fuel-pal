@@ -1,0 +1,42 @@
+@import '../../styles/_variables';
+
+.button {
+    background-color: orangered;
+
+    width: 27rem;
+    height: 5rem;
+
+    border-radius: 1rem;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: beige;
+
+    border: 0;
+    cursor: pointer;
+
+    margin: 0.5rem 0;
+
+    &__login {
+        @extend .button;
+        background-color: $greenShadeLogin;
+    }
+
+    &__facebook {
+        @extend .button;
+        background-color: $facebookShade;
+    }
+
+    &__signup {
+        @extend .button;
+        background-color: $orangeShade;
+    }
+
+    &:active{
+        transform: scale(0.98);
+    }
+    &:hover{
+        transform: scale(0.98);
+    }
+}
+
+

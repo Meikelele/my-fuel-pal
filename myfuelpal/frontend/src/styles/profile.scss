@@ -1,0 +1,29 @@
+@import './_mixins';
+@import './_variables';
+
+.profile {
+    @include flexCenter(row);
+    margin-top: 2rem;
+    gap: 3rem;
+
+    &__logo {
+        img {
+            width: 20rem;
+            height: 20rem;
+            border-radius: 100%;
+        }
+       
+    }
+
+    &__texts {
+        @include flexCenter(column);
+        
+        h2 {
+            margin: 0;
+        }
+    }
+}
+
+// .button {
+//     background-color: #b23b3b;
+// }

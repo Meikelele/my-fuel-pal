@@ -1,0 +1,17 @@
+.inpucik {
+  background-color: #f3f3f3;
+  width: 27rem;
+  height: 5rem;
+  border-radius: 1rem;
+  border: 0;
+  font-size: 1.75rem;
+  padding-left: 1em;
+  margin: 0.5rem 0;
+}
+
+.no-valid {
+  box-shadow: 0 0 0.2em red;
+  outline: none;
+  color: red;
+  border: 3px solid red;
+}/*# sourceMappingURL=styledinput.css.map */

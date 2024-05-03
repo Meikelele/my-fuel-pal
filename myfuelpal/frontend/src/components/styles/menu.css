@@ -1,0 +1,43 @@
+.menu {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 28rem;
+  height: 100vh;
+}
+.menu ul {
+  width: calc(100% - 40px);
+  font-size: 1.8rem;
+  list-style-type: none;
+  margin: 0 auto;
+}
+.menu ul li {
+  text-align: center;
+  margin-bottom: 1em;
+  color: black;
+  border: 1px solid white;
+  border-radius: 0.5em;
+  padding: 0.3em 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+.menu ul li:hover {
+  transform: scale(0.98);
+  cursor: pointer;
+}
+.menu ul li i {
+  background-color: red;
+}
+.menu ul li p {
+  letter-spacing: 0.72px;
+  font-size: 1.8rem;
+}
+.menu ul li a {
+  background-color: blue;
+  text-decoration: none;
+}
+
+.header {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}/*# sourceMappingURL=menu.css.map */

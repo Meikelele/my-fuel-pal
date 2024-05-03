@@ -1,0 +1,6 @@
+@import './mixins';
+
+.welcome {
+    @include flexCenter(column);
+}
+

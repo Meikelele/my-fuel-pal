@@ -1,0 +1,9 @@
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.dashboard .content {
+  display: flex;
+  flex-direction: column;
+}/*# sourceMappingURL=dashboard.css.map */

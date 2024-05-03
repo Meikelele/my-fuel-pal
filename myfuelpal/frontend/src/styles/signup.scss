@@ -1,0 +1,5 @@
+@import '_mixins.scss';
+
+.signup {
+    @include flexCenter(column);
+}

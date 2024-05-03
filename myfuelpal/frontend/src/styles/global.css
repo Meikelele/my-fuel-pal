@@ -1,0 +1,26 @@
+html {
+  font-size: 10px;
+  color: #2b2b2b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Fira Sans", sans-serif;
+}
+
+body {
+  background-color: white;
+}
+
+.header {
+  font-size: 4rem;
+  font-weight: 4rem;
+  color: #2b2b2b;
+}
+
+.subtext {
+  font-size: 2rem;
+  color: #7A7A7A;
+}/*# sourceMappingURL=global.css.map */

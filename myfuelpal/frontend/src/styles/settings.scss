@@ -1,0 +1,21 @@
+@import './_mixins';
+@import './_variables';
+
+.chapter {
+    @include flexCenter(column);
+
+    .option {
+        @include flexCenter(row);
+        justify-content: space-between;
+        width: 30rem;
+
+
+        .button {
+            width: 8rem;
+            height: 3rem;
+            @include flexCenter(column);
+            align-self: center;
+            
+        }
+    }
+}

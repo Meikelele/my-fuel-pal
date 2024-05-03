@@ -1,0 +1,18 @@
+Funckja strzałkowa - krótszy zapis dla zwykłych funckji w JS
+    PLUSY:
+        - szybszy zapis
+        - this jest dziedziczone z kontekstu otaczającej funkcji, co eliminuje potrzebę wyraźnego wiązania lub używania metody bind().
+
+    PRZYKŁADY:
+        function dupa(text) { return dupa }
+                    vs.
+        let dupa2 = text => dupa
+
+Funkcja anonimowa (bez nazwy) - funckja ktora nie ma nazwy
+    PRZYKLADY:
+        function(a,b) {a+b}
+
+22.04
+obejrec filmik odnoscnie SCSS
+podawac trzy arguemnty text, kolor i kolor napisu w Button
+dodac ikonke facebooka

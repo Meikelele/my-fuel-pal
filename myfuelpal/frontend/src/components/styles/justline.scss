@@ -1,0 +1,7 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixins';
+
+.just_line {
+    width: 100%; 
+    border: 0.1rem $grayShadeLine solid;
+}

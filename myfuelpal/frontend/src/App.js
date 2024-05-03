@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
 
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import SignIn from './views/SignIn';
+import SignUp from './views/SignUp';
+import Welcome from './views/Welcome';
+import Dashboard from './views/Dashboard';
+import Mycars from './views/MyCars';
+import Myfuelpal from './views/Myfuelpal';
+import Profile from './views/Profile';
+import Settings from './views/Settings';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload...
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Welcome />} />
+                <Route path="/loginek" element={<SignIn />} />
+                <Route path="/registerek" element={<SignUp />} />
+                <Route path="/home" element={<Dashboard />} />
+                <Route path="/mycars" element={<Mycars />} />
+                <Route path="/myfuelpal" element={<Myfuelpal />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/settings" element={<Settings />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

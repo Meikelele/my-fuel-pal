@@ -1,0 +1,36 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixins';
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+
+
+    .header_button {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        margin-top: 2rem;
+
+        .header {
+            margin: 0;
+        }
+
+        .button {
+            width: 10rem;
+            height: 3rem;
+            @include flexCenter(column);
+            align-self: center;
+
+            margin-right: 2rem;
+        }
+
+    }
+
+    .subtext {
+        // margin: 0;
+        padding: 0;
+    }
+}
