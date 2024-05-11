@@ -10,8 +10,7 @@ import JustLine from '../components/JustLine';
 import CarTile from '../components/CarTile';
 import FuelNote from '../components/FuelNote';
 
-import {Chart as ChartJS} from 'chart.js/auto';
-import {Doughnut, Bar} from 'react-chartjs-2';
+import DoughnutChart from '../components/Doughnut';
 
 class Dashboard extends React.Component {
     render() {
@@ -24,6 +23,7 @@ class Dashboard extends React.Component {
                         <section className='tiles'>
                             <CarTile nickname={'Gruzik'} info={'BMW E36 2.5L Benzyna 250 tys. km'} country={'PL'} number={'KPR 56019'} />
                             <CarTile nickname={'Lichwiarz'} info={'BMW E36 2.5L Benzyna 250 tys. km'} country={'PL'} number={'RSA 14901'} />
+                            
                         </section>
                         <JustLine />
                         <Content header='MyFuelPal' subtext='just your fuelnotes' link='/myfuelpal' buttonName='View All'/>
