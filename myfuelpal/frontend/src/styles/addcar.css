@@ -1,0 +1,15 @@
+.addcar {
+  margin-top: 3rem;
+}
+.addcar__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload_file {
+  width: 26rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}/*# sourceMappingURL=addcar.css.map */

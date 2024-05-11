@@ -23,4 +23,20 @@ body {
 .subtext {
   font-size: 2rem;
   color: #7A7A7A;
+}
+
+select, textarea {
+  background-color: #f3f3f3;
+  width: 27rem;
+  height: 5rem;
+  border-radius: 1rem;
+  border: 0;
+  font-size: 1.75rem;
+  padding-left: 1rem;
+  margin: 0.5rem 0;
+}
+
+textarea {
+  height: 10rem;
+  padding-top: 1rem;
 }/*# sourceMappingURL=global.css.map */

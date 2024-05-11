@@ -16,3 +16,12 @@ Funkcja anonimowa (bez nazwy) - funckja ktora nie ma nazwy
 obejrec filmik odnoscnie SCSS
 podawac trzy arguemnty text, kolor i kolor napisu w Button
 dodac ikonke facebooka
+
+5.05
+dodac opcje dodania zdejcia do form z autem
+stylizacja cartile i fuelnote
+
+9.5
+mozna zrobic by w myfuelpal wybrac okres z jakiego sie chce notatki
+mozna jakis filtr - najdrozsza notatka, najtansza, od nasjstarszej, dla danego auta
+

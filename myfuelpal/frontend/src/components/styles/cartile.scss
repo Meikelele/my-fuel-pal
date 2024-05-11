@@ -1,0 +1,125 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixins';
+
+
+.cartile {
+    
+    width: 35rem;
+    margin-left: 1rem;
+    // background-color: aqua;
+
+    &__image {
+
+        
+        
+        img {
+            width: 100%;
+            height: 18.5rem;
+            
+            border: none;
+            border-radius: 20% 0;
+
+            // ALTERNATYWNA WERSJA
+            // border-radius: 4em 4em 0em 0em;
+        }
+    }
+
+    &__bottom {
+        &__bar {
+            @include flexCenter(row);
+            justify-content: space-between;
+
+
+            h2 {
+                color: $blackShadeHeader;
+                font-size: $carNickname;
+            }
+
+
+        }
+
+        &__subtext {
+            p {
+                color: $grayShadeSubtext;
+                font-size: $carSubtext;
+            }
+        }
+
+        &__license {
+            @include flexCenter(row);
+
+            width: 15rem;
+            height: 100%;
+            height: $carNickname;
+
+            border: 1px solid black;
+            border-radius: 0.8rem;
+
+            font-size: $carSubtext;
+            font-weight: bold;
+
+            &__country {
+                height: $carNickname;
+                background-color: blue;
+                
+                text-align: center;
+
+                color: $backgroundColour;
+                padding: 0.5rem;
+
+                border-radius: 0.8rem 0 0 0.8rem;
+            }
+
+            &__number {
+                flex-grow: 1;
+                height: $carNickname;
+
+                text-align: center;
+
+                color: $blackShadeHeader;
+                padding: 0.5rem;
+            }
+        }
+    }
+
+}
+/* ---------------------------- */
+/* STYLOWANIE LICENSE PLATE     */
+/* ---------------------------- */
+// .license_plate{
+//     background-color: #fcfcfc;
+//     width: 12rem;
+//     height: 3rem;
+//     border: 1px solid black;
+//     border-radius: 0.25em;
+//     display: flex;
+    
+//     font-size: 1.5rem;
+//     font-weight: bold;
+    
+//     justify-content: space-between;
+//     align-items: center;
+    
+    
+    
+//   }
+//   .country_section{
+//     width: 2em;
+//     height: 100%;
+//     background-color: #3056bf;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+    
+//     color: white;
+//     border-radius: 0.25em 0 0 0.25em;
+//   }
+  
+//   .license_number{
+//       width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: #fcfcfc;
+//   }
+

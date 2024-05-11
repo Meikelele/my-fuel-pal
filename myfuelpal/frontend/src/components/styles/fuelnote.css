@@ -1,0 +1,44 @@
+.fuelnotetile {
+  background-color: white;
+  width: 50rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1rem 3rem 0.3rem rgba(5, 16, 55, 0.15);
+  border-radius: 0.6rem;
+}
+.fuelnotetile__main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+.fuelnotetile__main__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fuelnotetile__main__image img {
+  width: 6rem;
+  height: 6rem;
+}
+.fuelnotetile__main__texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.fuelnotetile__main__texts h2 {
+  margin: 0;
+  font-size: 3rem;
+}
+.fuelnotetile__main__texts h3 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+.fuelnotetile__end {
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+}/*# sourceMappingURL=fuelnote.css.map */

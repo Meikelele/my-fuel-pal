@@ -40,6 +40,11 @@ const Menu = () => {
                         </li>
                     </Link>  
                     </ul>
+
+                    <footer>
+                        <p>&copy; 2024 MyFuelPal.</p>
+                        <p>Wersja aplikacji: 1.0.0</p>
+                    </footer>
             </nav>
         </div>
     );

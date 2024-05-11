@@ -1,0 +1,18 @@
+@import './_mixins';
+@import './_variables';
+
+.addcar {
+    margin-top: 3rem;
+
+    &__form {
+        @include flexCenter(column);
+    }
+}
+
+.upload_file {
+    width: 26rem;
+    margin-bottom: 1rem;
+
+    text-align: center;
+}
+ 

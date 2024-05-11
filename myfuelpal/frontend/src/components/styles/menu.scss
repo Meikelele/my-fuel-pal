@@ -10,6 +10,8 @@
     width: 28rem;
     height: 100vh;
 
+   
+
     ul {
         width: calc(100% - 40px);
 
@@ -58,4 +60,17 @@
     margin-top: 4rem;
     margin-bottom: 2rem;
     text-align: center;
+}
+
+footer {
+    //  @include flexCenter(column);
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+
+    p {
+        color: $blackShadeHeader;
+        font-size: 1.5rem;        
+        text-align: center;
+    }
 }

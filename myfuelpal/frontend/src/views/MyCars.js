@@ -7,6 +7,10 @@ import '../styles/dashboard.css';
 import Menu from '../components/Menu';
 import Content from '../components/Content';
 import JustLine from '../components/JustLine';
+import CarTile from '../components/CarTile';
+
+
+
 
 class Mycars extends React.Component {
     render() {
@@ -15,7 +19,13 @@ class Mycars extends React.Component {
                 <main className='dashboard'>
                     <Menu />
                     <section className='content'>
-                        <Content header='MyCars' subtext='just your cars' link='/mycars' buttonName='View All'/>
+                        <Content header='MyCars' subtext='just your cars' link='/addcar' buttonName='Add car'/>
+                        <section className='tiles'>
+                            <CarTile nickname={'Gruzik'} info={'BMW E36 2.5L Benzyna 250 tys. km'} country={'PL'} number={'KPR 56019'} />
+                            <CarTile nickname={'Lichwiarz'} info={'BMW E36 2.5L Benzyna 250 tys. km'} country={'PL'} number={'RSA 14901'} />
+                            <CarTile nickname={'Podkołdrnik'} info={'BMW E36 2.5L Benzyna 250 tys. km'} country={'PL'} number={'WPR 68976'} />
+                        </section>
+                        
                         <JustLine />
                         
                     </section>

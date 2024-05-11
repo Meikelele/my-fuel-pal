@@ -1,0 +1,63 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixins';
+
+
+.fuelnotetile {
+    background-color: white;
+
+    width: 50rem;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 1rem 3rem 0.3rem rgba(5, 16, 55, 0.15);
+    border-radius: 0.6rem;
+    
+    &__main {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        padding: 1rem;
+
+        &__image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 6rem;
+                height: 6rem;
+            }
+            
+        }
+
+        &__texts {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            margin-left: 1rem;
+            margin-right: 1rem;
+
+            h2 {
+                margin: 0;
+                font-size: 3rem;
+            }
+
+            h3 {
+                margin: 0;
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    &__end {
+        padding: .5rem;
+        margin-left: 0.5rem;
+        
+    }
+}
