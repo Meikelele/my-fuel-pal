@@ -1,1 +1,1 @@
-select * from brand;
+select * from user;
