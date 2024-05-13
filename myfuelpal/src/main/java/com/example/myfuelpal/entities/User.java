@@ -1,13 +1,30 @@
 package com.example.myfuelpal.entities;
 
+import java.util.Collection;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.*;
-import org.hibernate.id.factory.spi.GenerationTypeStrategy;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="user")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,20 +33,64 @@ public class User {
 
     @Column(name="id_role")
     private Integer id_role;
-    @Column(name="firstName", nullable = false)
+
+    @Column(name="first_name")
     private String firstName;
 
-    @Column(name="lastName", nullable = false)
+    @Column(name="last_name")
     private String lastName;
 
-    @Column(name="email", nullable = false)
+    @Column(name="email")
     private String email;
 
-    @Column(name="password", nullable = false)
+    @Column(name="password")
     private String password;
 
-    public User() {
+    @Enumerated(EnumType.STRING)
+    @Transient
+    private Role role = Role.USER;
+
+    // @OneToMany(mappedBy = "user")
+    // private List<Token> tokens;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));        
     }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    // Remove the duplicate constructor
+    // public User() {
+    // }
 
     public User(Integer id, Integer id_role, String name, String surname, String email, String password) {
         this.id = id;
@@ -80,24 +141,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    // public String getPassword() {
+    //     return password;
+    // }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id_user=" + id +
-                ", id_role='" + id_role + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", username='" + firstName + '\'' +
-                ", surname=" + lastName +
-                '}';
     }
 }

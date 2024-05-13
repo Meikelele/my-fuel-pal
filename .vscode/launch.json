@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MyfuelpalApplication<myfuelpal>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.myfuelpal.MyfuelpalApplication",
+            "projectName": "myfuelpal",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
