@@ -16,7 +16,7 @@ const FuelNote = () => {
                 </div>
                 <div className='fuelnotetile__main__texts'>
                     <h2 className='header'>22:15</h2>
-                    <p className='subtext'>Sat - 31th July 2024</p>
+                    <p className='subtext'>31 July 2024</p>
                     <h3>Gruzik</h3>
                 </div>
                 {/* LINIA PIONOWA */}
