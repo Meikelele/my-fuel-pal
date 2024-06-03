@@ -6,7 +6,6 @@ import '../styles/dashboard.css';
 import '../styles/settings.css';
 
 import Menu from '../components/Menu';
-import Content from '../components/Content';
 
 class Settings extends React.Component {
     render() {

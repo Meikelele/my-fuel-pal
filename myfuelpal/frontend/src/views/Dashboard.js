@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 import Layout from './Layout';
+import '../styles/global.css';
 import '../styles/dashboard.css';
 
 import Menu from '../components/Menu';
@@ -28,46 +29,52 @@ class Dashboard extends React.Component {
     render() {
         return (   
             <Layout>   
-                <main className='dashboard'>
+                <main>
                     <Menu />
+                    <div className='submain'>
 
-                    <section className='content'>
-                        {/* MyCars section */}
-                        <div className='content__header'>
-                            <div className='content__header__texts'>
-                                <h1 className='header'>MyCars</h1>
-                                <p className='subtext'>just your cars</p>
+                        <section className='content'>
+                            {/* MyCars section */}
+                            <div className='content__header'>
+                                <div className='content__header__texts'>
+                                    <h1 className='header'>MyCars</h1>
+                                    <p className='subtext'>just your cars</p>
+                                </div>
+                                <Link to='/mycars'>
+                                    <button className='button__viewall'>View all</button>
+                                </Link>
                             </div>
-                            <Link to='/mycars'>
-                                <button className='button__viewall'>View all</button>
-                            </Link>
-                        </div>
 
-                        <section className='tiles'>
-                            {Cars.map((car, index) => (
-                                <CarTile key={index} nickname={car.nickname} info={car.info} country={car.country} number={car.number} />
-                            ))}
-                        </section>
-                        <JustLine />
+                            <section className='content__tiles'>
+                                {Cars.map((car, index) => (
+                                    <CarTile key={index} nickname={car.nickname} info={car.info} country={car.country} number={car.number} />
+                                ))}
+                            </section>
+                            <JustLine />
 
-                        {/* MyFuelNote section */}
-                        <div className='content__header'>
-                            <div className='content__header__texts'>
-                                <h1 className='header'>MyFuelPal</h1>
-                                <p className='subtext'>just your fuelnotes</p>
+                            {/* MyFuelNote section */}
+                            <div className='content__header'>
+                                <div className='content__header__texts'>
+                                    <h1 className='header'>MyFuelPal</h1>
+                                    <p className='subtext'>just your fuelnotes</p>
+                                </div>
+                                <Link to='/myfuelpal'>
+                                    <button className='button__viewall'>View all</button>
+                                </Link>
                             </div>
-                            <Link to='/myfuelpal'>
-                                <button className='button__viewall'>View all</button>
-                            </Link>
-                        </div>
-                        <section className='fuelnote_tiles'>
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                        </section>
-                        <JustLine />
 
-                    </section>
+                            <section className='content__tiles'>
+                                <FuelNote />
+                                <FuelNote />
+                                <FuelNote />
+                                <FuelNote />
+                                <FuelNote />
+                                <FuelNote />
+                            </section>
+                            <JustLine />
+
+                        </section>
+                    </div>
 
                 </main>
             </Layout>     

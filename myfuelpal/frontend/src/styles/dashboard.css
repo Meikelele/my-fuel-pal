@@ -1,36 +1,37 @@
-.dashboard {
+main {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
-.dashboard .content {
+main .submain {
+  width: calc(100% - 28rem);
   display: flex;
   flex-direction: column;
 }
-.dashboard .content__header {
+main .content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+main .content__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 4rem;
+  margin-bottom: 1rem;
 }
-.dashboard .content__header__texts {
+main .content__header__texts {
   display: flex;
   flex-direction: column;
 }
-.dashboard .content__header__texts .header {
+main .content__header__texts .header {
   margin: 0;
 }
-.dashboard .tiles {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+main .content__header button {
+  margin-right: 3rem;
 }
-.dashboard .fuelnote_tiles {
+main .content__tiles {
   display: flex;
-  justify-content: flex-start;
+  gap: 2rem;
   flex-wrap: wrap;
-  gap: 1.2rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
 }/*# sourceMappingURL=dashboard.css.map */

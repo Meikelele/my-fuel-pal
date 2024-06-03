@@ -45,7 +45,7 @@ const MyCars = () => {
 
     return (   
         <Layout>   
-            <main className='dashboard'>
+            <main>
                 <Menu />
                 <section className='content'>
                     <div className='content__header'>
@@ -56,7 +56,7 @@ const MyCars = () => {
                         <button className='button__viewall' onClick={open}>Add new</button>
                     </div>
 
-                    <section className='tiles'>
+                    <section className='content__tiles'>
                         {Cars.map((car, index) => (
                             <CarTile 
                                 key={index} 
