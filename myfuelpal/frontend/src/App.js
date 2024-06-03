@@ -12,9 +12,6 @@ import Myfuelpal from './views/Myfuelpal';
 import Profile from './views/Profile';
 import Settings from './views/Settings';
 
-import AddCar from './views/AddCar';
-import AddFuelnote from './views/AddFuelnote';
-
 function App() {
     return (
         <Router>
@@ -27,9 +24,6 @@ function App() {
                 <Route path="/myfuelpal" element={<Myfuelpal />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/settings" element={<Settings />} />
-
-                <Route path="/addcar" element={<AddCar />} />
-                <Route path="/addfuelnote" element={<AddFuelnote />} />
             </Routes>
         </Router>
     );

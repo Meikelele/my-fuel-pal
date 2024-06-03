@@ -22,7 +22,9 @@ class Profile extends React.Component {
                                 <h1 className='header'>Profile</h1>
                                 <p className='subtext'>just your profile</p>
                             </div>
-                            <button className='button__profile'>logout</button>
+                            <Link to='/'>
+                                <button className='button__profile'>logout</button>
+                            </Link>
                         </div>
 
                     <div className='profile'>

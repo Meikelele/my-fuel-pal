@@ -38,7 +38,9 @@ class Dashboard extends React.Component {
                                 <h1 className='header'>MyCars</h1>
                                 <p className='subtext'>just your cars</p>
                             </div>
-                            <button className='button__viewall'>View all</button>
+                            <Link to='/mycars'>
+                                <button className='button__viewall'>View all</button>
+                            </Link>
                         </div>
 
                         <section className='tiles'>
@@ -54,7 +56,9 @@ class Dashboard extends React.Component {
                                 <h1 className='header'>MyFuelPal</h1>
                                 <p className='subtext'>just your fuelnotes</p>
                             </div>
-                            <button className='button__viewall'>View all</button>
+                            <Link to='/myfuelpal'>
+                                <button className='button__viewall'>View all</button>
+                            </Link>
                         </div>
                         <section className='fuelnote_tiles'>
                             <FuelNote />

@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 
 import Backdrop from './backdrop/backdrop';
+import StyledInput from '../../components/StyledInput';
+import Button from '../../components/Button';
 
 import './modal.css';
 
@@ -27,19 +29,9 @@ const dropIn = {
     }
 };
 
-const Modal = ({ handleClose }) => {
-    const [taskName, setTaskName] = useState('');
-    const [taskDescription, setTaskDescription] = useState('');
+const AddCarModal = ({ handleClose }) => {
 
-    const taskNameChange = (event) => {
-        setTaskName(event.target.value);
-    };
-
-    const taskDescriptionChange = (event) => {
-        setTaskDescription(event.target.value);
-    };
-
-    const handleAddTask = () => {
+    const handleAddCar = () => {
         handleClose();
     };
 
@@ -53,9 +45,8 @@ const Modal = ({ handleClose }) => {
                 animate='visible'
                 exit='exit'
             >
-                <section className='addcar'>
-                            <form className='addcar__form'>
-                                <img src={File} alt="Logo" width={80} height={80}/>
+                
+                        <section className='modal__section'>               
                                 <input type="file" className='upload_file'></input>
                                 <StyledInput type='text' text='*Nickname' />
                                 <select name='brand'>
@@ -84,16 +75,11 @@ const Modal = ({ handleClose }) => {
                                 </select>
                                 <textarea name="description" rows="5" placeholder="Some note..."></textarea>
                                 <p className='subtext'>*not null areas</p>
-                                <Button text="Save" />
-                            </form>
+                                <button className='button__close' onClick={handleClose}>Save and close</button>
                         </section>
-
-                <button className='buttonaddtask' onClick={handleAddTask}>
-                    Close Previev
-                </button>
             </motion.div>
         </Backdrop>
     );
 };
 
-export default Modal;
+export default AddCarModal;

@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.modal {
+  
+    width: clamp(50%, 70rem, 90%);
+    // height: min(50%, 100vh);
+    background-color: $backgroundColour;
+
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+
+    &__section {
+        @include flexCenter(column); 
+        padding-bottom: 1rem;
+        padding-top: 1rem;         
+    }
+
+
+    .button__close {
+        margin-top: 1rem;
+        padding: 1rem;
+
+        width: 27rem;
+        height: 5rem;
+
+        font-size: 1.5rem;
+        font-weight: bold;
+        
+        background-color: $orangeShade;
+        color: $backgroundColour;
+
+        border: none;
+        border-radius: 1rem;
+
+        cursor: pointer;
+
+        &:active{
+            transform: scale(0.98);
+        }
+        &:hover{
+            transform: scale(0.98);
+        }
+
+    }
+
+}

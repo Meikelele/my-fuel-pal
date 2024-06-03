@@ -1,16 +1,24 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 
 import Layout from './Layout';
+
+import '../styles/global.css';
 import '../styles/dashboard.css';
 
 import Menu from '../components/Menu';
-import Content from '../components/Content';
 import JustLine from '../components/JustLine';
 import FuelNote from '../components/FuelNote';
+import AddFuelpalModal from '../components/modal/AddNoteModal';
+import AddNoteModal from '../components/modal/AddNoteModal';
 
-class Myfuelpal extends React.Component {
-    render() {
+
+const MyFuelPal = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+    const open = () => setIsOpen(true);
+    const close = () => setIsOpen(false);
+
         return (   
             <Layout>   
                 <main className='dashboard'>
@@ -23,7 +31,7 @@ class Myfuelpal extends React.Component {
                                 <h1 className='header'>MyCars</h1>
                                 <p className='subtext'>just your cars</p>
                             </div>
-                            <button className='button__viewall'>View all</button>
+                            <button className='button__viewall' onClick={open}>Add new</button>
                         </div>
                         
                         <section className='fuelnote_tiles'>
@@ -35,9 +43,14 @@ class Myfuelpal extends React.Component {
                         <JustLine />
                     </section>
 
+                    {
+                    <AnimatePresence>
+                        {isOpen && <AddNoteModal handleClose={close} />}
+                    </AnimatePresence>
+                    }
+
                 </main>
             </Layout>     
         );
-    }
 }
-export default Myfuelpal;
+export default MyFuelPal;
