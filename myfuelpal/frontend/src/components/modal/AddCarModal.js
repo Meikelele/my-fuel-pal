@@ -1,28 +1,59 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {Link} from "react-router-dom";
+import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
-import Layout from './Layout';
-import '../styles/dashboard.css';
-import '../styles/addcar.css';
+import Backdrop from './backdrop/backdrop';
 
-import Menu from '../components/Menu';
-import Content from '../components/Content';
-import Button from '../components/Button';
-import StyledInput from '../components/StyledInput';
+import './modal.css';
 
-import File from '../images/upload_file.svg';
+// animacja Modala
+const dropIn = {
+    hidden: {
+        y: '-100vh',
+        opacity: 0
+    },
+    visible: {
+        y: "0",
+        opacity: 1,
+        transition: {
+            duration: 0.1,
+            type: 'spring',
+            damping: 25,
+            stiffness: 500
+        }
+    },
+    exit: {
+        y: '100vh',
+        opacity: 0
+    }
+};
 
+const Modal = ({ handleClose }) => {
+    const [taskName, setTaskName] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
 
+    const taskNameChange = (event) => {
+        setTaskName(event.target.value);
+    };
 
-class AddCar extends React.Component {
-    render() {
-        return (   
-            <Layout>   
-                <main className='dashboard'>
-                    <Menu />
-                    <section className='content'>
-                        <Content header='MyCars' subtext='just your cars' link='/mycars' buttonName='View all'/>
-                        <section className='addcar'>
+    const taskDescriptionChange = (event) => {
+        setTaskDescription(event.target.value);
+    };
+
+    const handleAddTask = () => {
+        handleClose();
+    };
+
+    return (
+        <Backdrop onClick={handleClose}>
+            <motion.div 
+                onClick={(e) => e.stopPropagation()} 
+                className='modal' 
+                variants={dropIn}
+                initial='hidden'
+                animate='visible'
+                exit='exit'
+            >
+                <section className='addcar'>
                             <form className='addcar__form'>
                                 <img src={File} alt="Logo" width={80} height={80}/>
                                 <input type="file" className='upload_file'></input>
@@ -56,12 +87,13 @@ class AddCar extends React.Component {
                                 <Button text="Save" />
                             </form>
                         </section>
-                        
-                    </section>
 
-                </main>
-            </Layout>     
-        );
-    }
-}
-export default AddCar;
+                <button className='buttonaddtask' onClick={handleAddTask}>
+                    Close Previev
+                </button>
+            </motion.div>
+        </Backdrop>
+    );
+};
+
+export default Modal;

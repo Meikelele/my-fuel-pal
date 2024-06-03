@@ -16,15 +16,17 @@ class Myfuelpal extends React.Component {
                 <main className='dashboard'>
                     <Menu />
                     <section className='content'>
-                        <Content header='MyFuelPal' subtext='just your fuelnotes' link='/addfuelnote' buttonName='Add note'/>
+                        
+                        {/* MyCars section */}
+                        <div className='content__header'>
+                            <div className='content__header__texts'>
+                                <h1 className='header'>MyCars</h1>
+                                <p className='subtext'>just your cars</p>
+                            </div>
+                            <button className='button__viewall'>View all</button>
+                        </div>
+                        
                         <section className='fuelnote_tiles'>
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
                             <FuelNote />
                             <FuelNote />
                             <FuelNote />

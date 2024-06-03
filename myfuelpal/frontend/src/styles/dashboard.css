@@ -7,6 +7,19 @@
   display: flex;
   flex-direction: column;
 }
+.dashboard .content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+}
+.dashboard .content__header__texts {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard .content__header__texts .header {
+  margin: 0;
+}
 .dashboard .tiles {
   display: flex;
   flex-wrap: wrap;

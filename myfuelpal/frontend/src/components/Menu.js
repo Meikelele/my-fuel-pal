@@ -6,7 +6,9 @@ import {Link} from "react-router-dom";
 const Menu = () => {
     return (
         <div className="menu">
-            <h2 className='header'>MyFuelPal</h2>
+            <Link to='/home'>
+                <h2 className='header'>MyFuelPal</h2>
+            </Link>
             <nav>
                     <ul>
                     <Link to='/home'>

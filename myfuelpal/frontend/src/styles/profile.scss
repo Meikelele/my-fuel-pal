@@ -24,6 +24,27 @@
     }
 }
 
-// .button {
-//     background-color: #b23b3b;
-// }
+.button__profile {
+    // width: 8rem;
+    // height: 3rem;
+    padding: 1rem;
+
+    border: none;
+    border-radius: 1rem;
+
+    font-size: 2rem;
+    font-weight: bold;
+
+    color: $backgroundColour;
+    background-color: red;
+
+    cursor: pointer;
+
+    &:active{
+        transform: scale(0.98);
+    }
+    &:hover{
+        transform: scale(0.98);
+    }
+
+}

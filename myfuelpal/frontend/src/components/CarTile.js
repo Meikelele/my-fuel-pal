@@ -3,7 +3,7 @@ import './styles/cartile.css';
 
 import Auto from '../images/auto_test_3.jpg';
 
-const CarTile = ({nickname, info, country, number}) => {
+const CarTile = ( props ) => {
     return (
         <div className='cartile'>
             <div className='cartile__image'>
@@ -11,13 +11,13 @@ const CarTile = ({nickname, info, country, number}) => {
             </div>
             <div className='cartile__bottom'>
                 <div className='cartile__bottom__bar'>
-                    <h2>{nickname}</h2>
+                    <h2>{props.nickname}</h2>
                     <div className='cartile__bottom__license'>
-                        <div className='cartile__bottom__license__country'>{country}</div>
-                        <div className='cartile__bottom__license__number'>{number}</div>
+                        <div className='cartile__bottom__license__country'>{props.country}</div>
+                        <div className='cartile__bottom__license__number'>{props.number}</div>
                     </div>
                 </div>
-                <div className='cartile__bottom__subtext'><p>{info}</p></div>
+                <div className='cartile__bottom__subtext'><p>{props.brand} {props.model} {props.engine} {props.fuel} {props.mileage} {props.unit}</p></div>
                     
             </div>      
         </div>

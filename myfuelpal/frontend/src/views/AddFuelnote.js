@@ -19,7 +19,17 @@ class AddFuelnote extends React.Component {
                 <main className='dashboard'>
                     <Menu />
                     <section className='content'>
-                        <Content header='MyFuelPal' subtext='just your fuelnotes' link='/myfuelpal' buttonName='View all'/>
+                        {/* MyFuelPal section */}
+                        <div className='content__header'>
+                            <div className='content__header__texts'>
+                                <h1 className='header'>MyFuelPal</h1>
+                                <p className='subtext'>just your cars</p>
+                            </div>
+                            <button className='button__viewall'>View all</button>
+                        </div>
+
+
+
                         <section className='addfuelnote'>
                             <form className='addfuelnote__form'>
                                 <StyledInput type='text' text='*Price' />

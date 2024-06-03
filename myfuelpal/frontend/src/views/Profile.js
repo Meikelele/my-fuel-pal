@@ -7,8 +7,6 @@ import '../styles/profile.css';
 
 import Avatar from '../images/Triss.jpeg';
 import Menu from '../components/Menu';
-import Content from '../components/Content';
-
 
 class Profile extends React.Component {
     render() {
@@ -17,7 +15,15 @@ class Profile extends React.Component {
                 <main className='dashboard'>
                     <Menu />
                     <section className='content'>
-                        <Content header='Profile' subtext='just your profile'  link='/profile' buttonName='Logout'/>
+                        
+                        {/* Profile section */}
+                        <div className='content__header'>
+                            <div className='content__header__texts'>
+                                <h1 className='header'>Profile</h1>
+                                <p className='subtext'>just your profile</p>
+                            </div>
+                            <button className='button__profile'>logout</button>
+                        </div>
 
                     <div className='profile'>
                         <div class="profile__logo">

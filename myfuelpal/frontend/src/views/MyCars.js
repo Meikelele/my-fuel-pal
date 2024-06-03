@@ -3,13 +3,36 @@ import {Link} from "react-router-dom";
 
 import Layout from './Layout';
 import '../styles/dashboard.css';
+import '../styles/global.css'
 
 import Menu from '../components/Menu';
-import Content from '../components/Content';
 import JustLine from '../components/JustLine';
 import CarTile from '../components/CarTile';
 
-
+const Cars = [
+    {
+        nickname: 'Gruzikk',
+        brand: 'BMW',
+        model: 'E36',
+        engine: '2.5L',
+        fuel: 'Benzyna',
+        mileage: '250 000',
+        unit: 'km',
+        country: 'PL',
+        number: 'KPR 56019'
+    },
+    {
+        nickname: 'Lichwiarz',
+        brand: 'BMW',
+        model: 'E36',
+        engine: '2.5L',
+        fuel: 'Benzyna',
+        mileage: '250 000',
+        unit: 'km',
+        country: 'PL',
+        number: 'RSA 14901'
+    }
+]
 
 
 class Mycars extends React.Component {
@@ -19,17 +42,23 @@ class Mycars extends React.Component {
                 <main className='dashboard'>
                     <Menu />
                     <section className='content'>
-                        <Content header='MyCars' subtext='just your cars' link='/addcar' buttonName='Add car'/>
+
+                        <div className='content__header'>
+                            <div className='content__header__texts'>
+                                <h1 className='header'>MyCars</h1>
+                                <p className='subtext'>just your cars</p>
+                            </div>
+                            <button className='button__viewall'>View all</button>
+                        </div>
+
                         <section className='tiles'>
-                            <CarTile nickname={'Gruzik'} info={'BMW E36 2.5L Benzyna 250 tys. km'} country={'PL'} number={'KPR 56019'} />
-                            <CarTile nickname={'Lichwiarz'} info={'BMW E36 2.5L Benzyna 250 tys. km'} country={'PL'} number={'RSA 14901'} />
-                            <CarTile nickname={'Podkołdrnik'} info={'BMW E36 2.5L Benzyna 250 tys. km'} country={'PL'} number={'WPR 68976'} />
+                            {Cars.map((car, index) => (
+                                <CarTile key={index} nickname={car.nickname} brand={car.brand} model={car.model} engine={car.engine} fuel={car.fuel} mileage={car.mileage} unit={car.unit} country={car.country} number={car.number} />
+                            ))}
                         </section>
-                        
                         <JustLine />
                         
                     </section>
-
                 </main>
             </Layout>     
         );

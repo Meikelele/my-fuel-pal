@@ -15,7 +15,13 @@ class Settings extends React.Component {
                 <main className='dashboard'>
                     <Menu />
                     <section className='content'>
-                        <Content header='Settings' subtext='just your settings' link='/settings' buttonName='Settings'/>
+                        {/* MyCars section */}
+                        <div className='content__header'>
+                            <div className='content__header__texts'>
+                                <h1 className='header'>Settings</h1>
+                                <p className='subtext'>just your settings</p>
+                            </div>
+                        </div>
                         
                         <div class="chapter">
                             <h2 className='header'>Security</h2>

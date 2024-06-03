@@ -7,6 +7,29 @@
     .content {
         display: flex;
         flex-direction: column;
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-top: 4rem;
+
+            &__texts {
+                display: flex;
+                flex-direction: column;
+
+                .header {
+                    margin: 0;
+                    
+                }
+
+                .subtext {
+
+
+                }
+            }
+        }
                 
     }
 
