@@ -47,33 +47,34 @@ const MyCars = () => {
         <Layout>   
             <main>
                 <Menu />
-                <section className='content'>
-                    <div className='content__header'>
-                        <div className='content__header__texts'>
-                            <h1 className='header'>MyCars</h1>
-                            <p className='subtext'>just your cars</p>
+                <div class="submain">
+                    <section className='content'>
+                        <div className='content__header'>
+                            <div className='content__header__texts'>
+                                <h1 className='header'>MyCars</h1>
+                                <p className='subtext'>just your cars</p>
+                            </div>
+                            <button className='button__viewall' onClick={open}>Add new</button>
                         </div>
-                        <button className='button__viewall' onClick={open}>Add new</button>
-                    </div>
-
-                    <section className='content__tiles'>
-                        {Cars.map((car, index) => (
-                            <CarTile 
-                                key={index} 
-                                nickname={car.nickname} 
-                                brand={car.brand} 
-                                model={car.model} 
-                                engine={car.engine} 
-                                fuel={car.fuel} 
-                                mileage={car.mileage} 
-                                unit={car.unit} 
-                                country={car.country} 
-                                number={car.number} 
-                            />
-                        ))}
+                        <section className='content__tiles'>
+                            {Cars.map((car, index) => (
+                                <CarTile
+                                    key={index}
+                                    nickname={car.nickname}
+                                    brand={car.brand}
+                                    model={car.model}
+                                    engine={car.engine}
+                                    fuel={car.fuel}
+                                    mileage={car.mileage}
+                                    unit={car.unit}
+                                    country={car.country}
+                                    number={car.number}
+                                />
+                            ))}
+                        </section>
+                        <JustLine />
                     </section>
-                    <JustLine />
-                </section>
+                </div>
             </main>
 
             {

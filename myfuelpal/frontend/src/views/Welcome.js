@@ -12,7 +12,7 @@ class Welcome extends React.Component {
         return (   
             <Layout>   
                 <main className='welcome'>
-                    <img src={Logo} alt="Logo" width={200} height={200}/>
+                    {/* <img src={Logo} alt="Logo" width={200} height={200}/> */}
                     <h2 className='header'>MyFuelPal</h2>
                     <p className='subtext'>Track your refueling history</p>
 
