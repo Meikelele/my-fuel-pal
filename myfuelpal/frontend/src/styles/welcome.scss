@@ -2,6 +2,8 @@
 
 .welcome {
     @include flexCenter(column);
+    height: 100vh;
+    width: 100vw;
 
     @media (max-width: 500px) {
         width: 100vw;
