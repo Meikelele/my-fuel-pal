@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
 import Layout from './Layout';
-
 import '../styles/global.css';
 import '../styles/dashboard.css';
-
 
 import Menu from '../components/Menu';
 import JustLine from '../components/JustLine';
 import CarTile from '../components/CarTile';
 import AddCarModal from '../components/modal/AddCarModal';
-
+import MobileMenu from '../components/MobileMenu';
 
 const Cars = [
     {
@@ -40,14 +38,25 @@ const Cars = [
 
 const MyCars = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+
     const open = () => setIsOpen(true);
     const close = () => setIsOpen(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 500);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (   
         <Layout>   
             <main>
                 <Menu />
-                <div class="submain">
+                <div className="submain">
                     <section className='content'>
                         <div className='content__header'>
                             <div className='content__header__texts'>
@@ -75,14 +84,12 @@ const MyCars = () => {
                         <JustLine />
                     </section>
                 </div>
+                {isMobile && <MobileMenu />}
             </main>
 
-            {
-                <AnimatePresence>
-                    {isOpen && <AddCarModal handleClose={close} />}
-                    
-                </AnimatePresence>
-            }
+            <AnimatePresence>
+                {isOpen && <AddCarModal handleClose={close} />}
+            </AnimatePresence>
         </Layout>     
     );
 };

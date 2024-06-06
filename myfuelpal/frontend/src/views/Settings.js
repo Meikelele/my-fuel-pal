@@ -6,9 +6,31 @@ import '../styles/dashboard.css';
 import '../styles/settings.css';
 
 import Menu from '../components/Menu';
+import MobileMenu from '../components/MobileMenu';
 
 class Settings extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            screenWidth: window.innerWidth
+        };
+        this.handleWindowResize = this.handleWindowResize.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleWindowResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowResize);
+    }
+
+    handleWindowResize() {
+        this.setState({ screenWidth: window.innerWidth });
+    }
     render() {
+        const { screenWidth } = this.state;
+        const isMobile = screenWidth <= 500;
         return (   
             <Layout>   
                 <main className='dashboard'>
@@ -38,8 +60,9 @@ class Settings extends React.Component {
                             </div>
                         </div>
                     </section>
-
+                    {isMobile ? <MobileMenu /> : null}
                 </main>
+                
             </Layout>     
         );
     }

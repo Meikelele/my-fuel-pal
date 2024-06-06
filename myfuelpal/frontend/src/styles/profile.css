@@ -39,6 +39,10 @@
 }
 
 @media (max-width: 500px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
   .profile {
     display: flex;
     flex-direction: column;

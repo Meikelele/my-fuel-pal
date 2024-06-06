@@ -10,6 +10,8 @@ import JustLine from '../components/JustLine';
 import CarTile from '../components/CarTile';
 import FuelNote from '../components/FuelNote';
 
+import MobileMenu from '../components/MobileMenu';
+
 const Cars = [
     {
         nickname: 'Gruzik',
@@ -26,7 +28,30 @@ const Cars = [
 ]
 
 class Dashboard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            screenWidth: window.innerWidth
+        };
+        this.handleWindowResize = this.handleWindowResize.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleWindowResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowResize);
+    }
+
+    handleWindowResize() {
+        this.setState({ screenWidth: window.innerWidth });
+    }
     render() {
+
+        const { screenWidth } = this.state;
+        const isMobile = screenWidth <= 500;
+
         return (   
             <Layout>   
                 <main>
@@ -75,7 +100,7 @@ class Dashboard extends React.Component {
 
                         </section>
                     </div>
-
+                    {isMobile ? <MobileMenu /> : null}
                 </main>
             </Layout>     
         );
