@@ -20,4 +20,20 @@
   align-items: center;
   justify-content: center;
   align-self: center;
+}
+
+@media (max-width: 500px) {
+  .content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .content__header {
+    margin: 0;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    margin-left: 2rem;
+  }
 }/*# sourceMappingURL=settings.css.map */
