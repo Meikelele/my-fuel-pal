@@ -60,4 +60,8 @@
         margin-left: 0.5rem;
         
     }
+
+    @media (max-width: 500px) {
+        width: 90vw;
+    }
 }
