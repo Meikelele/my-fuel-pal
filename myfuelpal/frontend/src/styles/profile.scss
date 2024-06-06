@@ -48,3 +48,23 @@
     }
 
 }
+
+@media (max-width: 500px) {
+    .profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+
+        &__logo {
+            img {
+                // width: 10rem;
+                // height: 10rem;
+            }
+        }
+
+        &__texts {
+           
+        }
+    }
+}

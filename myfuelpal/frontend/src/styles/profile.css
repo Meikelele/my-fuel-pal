@@ -36,4 +36,12 @@
 }
 .button__profile:hover {
   transform: scale(0.98);
+}
+
+@media (max-width: 500px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }/*# sourceMappingURL=profile.css.map */
