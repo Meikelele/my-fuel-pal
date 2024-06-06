@@ -51,6 +51,11 @@
   color: #2b2b2b;
   padding: 0.5rem;
 }
+@media (max-width: 500px) {
+  .cartile {
+    width: 80vw;
+  }
+}
 
 /* ---------------------------- */
 /* STYLOWANIE LICENSE PLATE     */

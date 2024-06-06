@@ -4,6 +4,24 @@
   flex-direction: column;
   width: 28rem;
   height: 100vh;
+  transition: display 0.3s ease;
+}
+.menu.closed {
+  display: none;
+}
+.menu .menu-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.menu .menu-toggle:focus {
+  outline: none;
 }
 .menu ul {
   width: calc(100% - 40px);
@@ -35,21 +53,24 @@
   background-color: blue;
   text-decoration: none;
 }
-
-.header {
+.menu .header {
   margin-top: 4rem;
   margin-bottom: 2rem;
   text-align: center;
   text-decoration: none;
 }
-
-footer {
+.menu footer {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
 }
-footer p {
+.menu footer p {
   color: #2b2b2b;
   font-size: 1.5rem;
   text-align: center;
+}
+@media (max-width: 500px) {
+  .menu {
+    display: none;
+  }
 }/*# sourceMappingURL=menu.css.map */

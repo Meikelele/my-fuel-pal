@@ -51,4 +51,38 @@ main {
         }
                 
     }
+
+    @media (max-width: 500px) {
+        @include flexStart(row);
+
+        .submain {
+            width: 100vw;
+            
+            .content {
+
+
+                &__header {
+                    margin: 0;
+                    margin-top: 2rem;
+                    margin-bottom: 2rem;
+                    margin-left: 2rem;
+
+                    button {
+                        margin-right: 2rem;
+                    
+                    }
+                }
+
+                &__tiles {
+                    gap: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+
+        }
+    }
 }

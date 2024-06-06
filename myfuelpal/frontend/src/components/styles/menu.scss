@@ -3,32 +3,45 @@
 
 .menu {
     background-color: $backgroundColour;
-
     display: flex;
     flex-direction: column;
-
     width: 28rem;
     height: 100vh;
+    transition: display 0.3s ease;
 
-   
+    &.closed {
+        display: none;
+    }
+
+    .menu-toggle {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .menu-toggle:focus {
+        outline: none;
+    }
 
     ul {
         width: calc(100% - 40px);
-
         font-size: 1.8rem;
-        
         list-style-type: none;
         margin: 0 auto;
-        
+
         li {
             text-align: center;
             margin-bottom: 1em;
             color: black;
-
             border: 1px solid white;
             border-radius: 0.5em; 
             padding: 0.3em 0;
-
             box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 
             &:hover {
@@ -37,7 +50,6 @@
             }
 
             i {
-                // Dodac style dla ikonek
                 background-color: red;
             }
 
@@ -47,31 +59,32 @@
             }
 
             a {
-                // styl dla hiperlaczy
                 background-color: blue;
                 text-decoration: none;
             }
-
         }
     }
-}
 
-.header {
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    text-decoration: none;
-}
-
-footer {
-    //  @include flexCenter(column);
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-
-    p {
-        color: $blackShadeHeader;
-        font-size: 1.5rem;        
+    .header {
+        margin-top: 4rem;
+        margin-bottom: 2rem;
         text-align: center;
+        text-decoration: none;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
+
+        p {
+            color: $blackShadeHeader;
+            font-size: 1.5rem;        
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 500px) {
+        display: none;
     }
 }
