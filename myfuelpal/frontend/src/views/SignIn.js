@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import config from '../config';
 import '../styles/signin.css';
+import '../components/styles/button.css';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -65,7 +66,7 @@ const SignIn = () => {
                 />
                 {error && <div className='error-text login-error'>{error}</div>}
                 <div className='gap' />
-                <button type='submit'>Login</button>
+                <button type='submit' className='button__login'>Login</button>
             </form>
         </main>
     );

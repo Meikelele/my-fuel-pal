@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/signin.css';
+import '../components/styles/button.css';
 
 const SignUp = () => {
     const [name, setName] = useState('');
@@ -89,7 +90,7 @@ const SignUp = () => {
                 />
                 {error && <div className='error-text'>{error}</div>}
                 <div className='gap' />
-                <button type='submit'>Sign Up</button>
+                <button type='submit' className='button__signup'>Sign Up</button>
             </form>
         </main>
     );
