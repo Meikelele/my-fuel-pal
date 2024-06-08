@@ -30,4 +30,14 @@
 }
 .modal .button__close:hover {
   transform: scale(0.98);
+}
+.modal input {
+  background-color: #f3f3f3;
+  width: 27rem;
+  height: 5rem;
+  border-radius: 1rem;
+  border: 0;
+  font-size: 1.75rem;
+  padding-left: 1em;
+  margin: 0.5rem 0;
 }/*# sourceMappingURL=modal.css.map */
