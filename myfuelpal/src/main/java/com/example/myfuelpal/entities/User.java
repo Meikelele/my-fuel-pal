@@ -1,7 +1,11 @@
 package com.example.myfuelpal.entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -50,12 +54,24 @@ public class User implements UserDetails {
     @Transient
     private Role role = Role.USER;
 
-    // @OneToMany(mappedBy = "user")
-    // private List<Token> tokens;
+
+
+    @ManyToMany
+    @JoinTable(
+    name = "userVehicle",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "vehicle_id")
+    )
+    private Set<Vehicle> vehicles = new HashSet<>();
+
+
+
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));        
+            return List.of(new SimpleGrantedAuthority(role.name()));        
     }
 
     @Override
