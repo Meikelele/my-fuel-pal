@@ -1,5 +1,6 @@
 package com.example.myfuelpal.entities;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,42 +18,34 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "vehicle")
+@Table(name = "fuelnote")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Vehicle {
+public class Fuelnote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "Id")
     private Integer id;
 
-    @Column(name = "brand")
-    private String brand;
+    @Column(name = "price")
+    private String price;
 
-    @Column(name = "model")
-    private String model;
-
-    @Column(name = "fuel")
-    private String fuel;
-
-    @Column(name = "course")
-    private Integer course;
-
-    @Column(name = "nickname")
-    private String nickname;
-
-    @Column(name = "license_plate")
-    private String licensePlate;
-    
-    @Column(name = "country")
-    private String country;
+    @Column(name = "liters")
+    private String liters;
 
     @Column(name = "description")
     private String description;
 
+    @Column(name = "refuel_date")
+    private Date refuelDate;
 
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "id_vehicle")
+    private Vehicle vehicle;
+
 }

@@ -56,13 +56,11 @@ public class User implements UserDetails {
 
 
 
-    @ManyToMany
-    @JoinTable(
-    name = "userVehicle",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "vehicle_id")
-    )
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Vehicle> vehicles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Fuelnote> fuelnotes = new HashSet<>();
 
 
 
