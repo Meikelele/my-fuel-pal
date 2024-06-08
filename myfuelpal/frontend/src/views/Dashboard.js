@@ -1,5 +1,6 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import Layout from './Layout';
 import '../styles/global.css';
@@ -9,101 +10,95 @@ import Menu from '../components/Menu';
 import JustLine from '../components/JustLine';
 import CarTile from '../components/CarTile';
 import FuelNote from '../components/FuelNote';
-
 import MobileMenu from '../components/MobileMenu';
 
-const Cars = [
-    {
-        nickname: 'Gruzik',
-        info: 'BMW E36 2.5L Benzyna 250 tys. km',
-        country: 'PL',
-        number: 'KPR 56019'
-    },
-    {
-        nickname: 'Lichwiarz',
-        info: 'BMW E36 2.5L Benzyna 250 tys. km',
-        country: 'PL',
-        number: 'RSA 14901'
-    }
-]
+const Dashboard = () => {
+    const [cars, setCars] = useState([]);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            screenWidth: window.innerWidth
+    const funkcjaAXIOS = () => {
+        axios.get('http://localhost:8080/api/vehicles', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then((response) => {
+            console.log(response);
+            setCars(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
+
+    useEffect(() => {
+        funkcjaAXIOS();
+        const handleWindowResize = () => {
+            setScreenWidth(window.innerWidth);
         };
-        this.handleWindowResize = this.handleWindowResize.bind(this);
-    }
+        window.addEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
 
-    componentDidMount() {
-        window.addEventListener('resize', this.handleWindowResize);
-    }
+    const isMobile = screenWidth <= 500;
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.handleWindowResize);
-    }
-
-    handleWindowResize() {
-        this.setState({ screenWidth: window.innerWidth });
-    }
-    render() {
-
-        const { screenWidth } = this.state;
-        const isMobile = screenWidth <= 500;
-
-        return (   
-            <Layout>   
-                <main>
-                    <Menu />
-                    <div className='submain'>
-
-                        <section className='content'>
-                            {/* MyCars section */}
-                            <div className='content__header'>
-                                <div className='content__header__texts'>
-                                    <h1 className='header'>MyCars</h1>
-                                    <p className='subtext'>just your cars</p>
-                                </div>
-                                <Link to='/mycars'>
-                                    <button className='button__viewall'>View all</button>
-                                </Link>
+    return (      
+            <main>
+                <Menu />
+                <div className='submain'>
+                    <section className='content'>
+                        {/* MyCars section */}
+                        <div className='content__header'>
+                            <div className='content__header__texts'>
+                                <h1 className='header'>MyCars</h1>
+                                <p className='subtext'>just your cars</p>
                             </div>
-
-                            <section className='content__tiles'>
-                                {Cars.map((car, index) => (
-                                    <CarTile key={index} nickname={car.nickname} info={car.info} country={car.country} number={car.number} />
-                                ))}
-                            </section>
-                            <JustLine />
-
-                            {/* MyFuelNote section */}
-                            <div className='content__header'>
-                                <div className='content__header__texts'>
-                                    <h1 className='header'>MyFuelPal</h1>
-                                    <p className='subtext'>just your fuelnotes</p>
-                                </div>
-                                <Link to='/myfuelpal'>
-                                    <button className='button__viewall'>View all</button>
-                                </Link>
-                            </div>
-
-                            <section className='content__tiles'>
-                                <FuelNote />
-                                <FuelNote />
-                                <FuelNote />
-                                <FuelNote />
-                                <FuelNote />
-                                <FuelNote />
-                            </section>
-                            <JustLine />
-
+                            <Link to='/mycars'>
+                                <button className='button__viewall'>View all</button>
+                            </Link>
+                        </div>
+                        <section className='content__tiles'>
+                            {cars.map((car, index) => (
+                                <CarTile
+                                    key={index}
+                                    nickname={car.nickname}
+                                    brand={car.brand}
+                                    model={car.model}
+                                    fuel={car.fuel}
+                                    mileage={car.course}
+                                    country={car.country}
+                                    number={car.licensePlate}
+                                />
+                            ))}
                         </section>
-                    </div>
-                    {isMobile ? <MobileMenu /> : null}
-                </main>
-            </Layout>     
-        );
-    }
-}
+                        <JustLine />
+
+                        {/* MyFuelNote section */}
+                        <div className='content__header'>
+                            <div className='content__header__texts'>
+                                <h1 className='header'>MyFuelPal</h1>
+                                <p className='subtext'>just your fuelnotes</p>
+                            </div>
+                            <Link to='/myfuelpal'>
+                                <button className='button__viewall'>View all</button>
+                            </Link>
+                        </div>
+                        <section className='content__tiles'>
+                            <FuelNote />
+                            <FuelNote />
+                            <FuelNote />
+                            <FuelNote />
+                            <FuelNote />
+                            <FuelNote />
+                        </section>
+                        <JustLine />
+                    </section>
+                </div>
+                {isMobile && <MobileMenu />}
+            </main>    
+    );
+};
+
 export default Dashboard;

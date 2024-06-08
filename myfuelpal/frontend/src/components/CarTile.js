@@ -17,7 +17,7 @@ const CarTile = ( props ) => {
                         <div className='cartile__bottom__license__number'>{props.number}</div>
                     </div>
                 </div>
-                <div className='cartile__bottom__subtext'><p>{props.brand} {props.model} {props.engine} {props.fuel} {props.mileage} {props.unit}</p></div>
+                <div className='cartile__bottom__subtext'><p>{props.brand} {props.model} {props.engine} {props.fuel} {props.mileage} KM</p></div>
                     
             </div>      
         </div>

@@ -11,37 +11,34 @@ import CarTile from '../components/CarTile';
 import AddCarModal from '../components/modal/AddCarModal';
 import MobileMenu from '../components/MobileMenu';
 
-const Cars = [
-    {
-        nickname: 'Gruzikk',
-        brand: 'BMW',
-        model: 'E36',
-        engine: '2.5L',
-        fuel: 'Benzyna',
-        mileage: '250 000',
-        unit: 'km',
-        country: 'PL',
-        number: 'KPR 56019'
-    },
-    {
-        nickname: 'Lichwiarz',
-        brand: 'BMW',
-        model: 'E36',
-        engine: '2.5L',
-        fuel: 'Benzyna',
-        mileage: '250 000',
-        unit: 'km',
-        country: 'PL',
-        number: 'RSA 14901'
-    }
-];
+import axios from 'axios';
 
 const MyCars = () => {
+
+    const funkcjaAXIOS = () => {
+        //wyslij zadanie pod ten adres sciagniecia danych
+        axios.get('http://localhost:8080/api/vehicles', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then((response) => {
+            console.log(response);
+            setCar(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+    
+    
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
 
     const open = () => setIsOpen(true);
     const close = () => setIsOpen(false);
+
+    const [car, setCar] = useState([]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -49,11 +46,16 @@ const MyCars = () => {
         };
 
         window.addEventListener('resize', handleResize);
+
+        funkcjaAXIOS();
+
         return () => window.removeEventListener('resize', handleResize);
+
+
     }, []);
 
     return (   
-        <Layout>   
+        // <Layout>   
             <main>
                 <Menu />
                 <div className="submain">
@@ -66,18 +68,18 @@ const MyCars = () => {
                             <button className='button__viewall' onClick={open}>Add new</button>
                         </div>
                         <section className='content__tiles'>
-                            {Cars.map((car, index) => (
+                            {car.map((car, index) => (
                                 <CarTile
                                     key={index}
                                     nickname={car.nickname}
                                     brand={car.brand}
                                     model={car.model}
-                                    engine={car.engine}
+                                    // engine={car.engine}
                                     fuel={car.fuel}
-                                    mileage={car.mileage}
-                                    unit={car.unit}
+                                    mileage={car.course}
+                                    
                                     country={car.country}
-                                    number={car.number}
+                                    number={car.licensePlate}
                                 />
                             ))}
                         </section>
@@ -85,12 +87,14 @@ const MyCars = () => {
                     </section>
                 </div>
                 {isMobile && <MobileMenu />}
-            </main>
 
-            <AnimatePresence>
+                <AnimatePresence>
                 {isOpen && <AddCarModal handleClose={close} />}
             </AnimatePresence>
-        </Layout>     
+            </main>
+
+            
+        // </Layout>     
     );
 };
 
