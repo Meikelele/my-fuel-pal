@@ -1,5 +1,6 @@
 package com.example.myfuelpal.entities;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,8 +37,11 @@ public class Fuelnote {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "refuel_date")
-    private Date refuelDate;
+    @Column(name = "data")
+    private Date kalendarz;
+
+    @Column(name = "time")
+    private Time time;
 
 
     @ManyToOne

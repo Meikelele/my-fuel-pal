@@ -39,36 +39,36 @@ public class VehicleController {
         return vehicleRepository.save(vehicle);
     }
 
-    // // Update existing vehicle
-    // @PutMapping("/{id}")
-    // public ResponseEntity<Vehicle> updateVehicle(@PathVariable Integer id, @RequestBody Vehicle vehicleDetails) {
-    //     Optional<Vehicle> vehicle = vehicleRepository.findById(id);
-    //     if (vehicle.isPresent()) {
-    //         Vehicle existingVehicle = vehicle.get();
-    //         existingVehicle.setBrand(vehicleDetails.getBrand());
-    //         existingVehicle.setModel(vehicleDetails.getModel());
-    //         existingVehicle.setFuel(vehicleDetails.getFuel());
-    //         existingVehicle.setCourse(vehicleDetails.getCourse());
-    //         existingVehicle.setNickname(vehicleDetails.getNickname());
-    //         existingVehicle.setLicensePlate(vehicleDetails.getLicensePlate());
-    //         existingVehicle.setCountry(vehicleDetails.getCountry());
-    //         existingVehicle.setDescription(vehicleDetails.getDescription());
-    //         Vehicle updatedVehicle = vehicleRepository.save(existingVehicle);
-    //         return ResponseEntity.ok(updatedVehicle);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
+    // Update existing vehicle
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehicle> updateVehicle(@PathVariable Integer id, @RequestBody Vehicle vehicleDetails) {
+        Optional<Vehicle> vehicle = vehicleRepository.findById(id);
+        if (vehicle.isPresent()) {
+            Vehicle existingVehicle = vehicle.get();
+            existingVehicle.setBrand(vehicleDetails.getBrand());
+            existingVehicle.setModel(vehicleDetails.getModel());
+            existingVehicle.setFuel(vehicleDetails.getFuel());
+            existingVehicle.setCourse(vehicleDetails.getCourse());
+            existingVehicle.setNickname(vehicleDetails.getNickname());
+            existingVehicle.setLicensePlate(vehicleDetails.getLicensePlate());
+            existingVehicle.setCountry(vehicleDetails.getCountry());
+            existingVehicle.setDescription(vehicleDetails.getDescription());
+            Vehicle updatedVehicle = vehicleRepository.save(existingVehicle);
+            return ResponseEntity.ok(updatedVehicle);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-    // // Delete vehicle
-    // @DeleteMapping("/{id}")
-    // public ResponseEntity<Void> deleteVehicle(@PathVariable Integer id) {
-    //     Optional<Vehicle> vehicle = vehicleRepository.findById(id);
-    //     if (vehicle.isPresent()) {
-    //         vehicleRepository.delete(vehicle.get());
-    //         return ResponseEntity.noContent().build();
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
+    // Delete vehicle
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable Integer id) {
+        Optional<Vehicle> vehicle = vehicleRepository.findById(id);
+        if (vehicle.isPresent()) {
+            vehicleRepository.delete(vehicle.get());
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
