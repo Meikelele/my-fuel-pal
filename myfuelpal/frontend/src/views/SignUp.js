@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,6 +14,12 @@ const SignUp = () => {
 
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            navigate('/home');
+        }
+    }, []);
 
     const postSignUp = async (event) => {
         event.preventDefault();
