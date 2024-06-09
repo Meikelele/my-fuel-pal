@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import '../styles/global.css';
 import '../styles/dashboard.css';
@@ -14,6 +15,7 @@ import MobileMenu from '../components/MobileMenu';
 const MyFuelPal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+    const navigate = useNavigate();
 
     const open = () => setIsOpen(true);
     const close = () => setIsOpen(false);
@@ -36,6 +38,9 @@ const MyFuelPal = () => {
     const [fuelnote, setFuelnote] = useState([]);
 
     useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/');
+        }
         funkcjaAXIOS();
 
         const handleResize = () => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -14,16 +14,20 @@ import MobileMenu from '../components/MobileMenu';
 
 const Profile = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const navigate = useNavigate();
 
+    const [user, setUser] = useState({});
 
     const axiosGetUser = () => {
-        axios.get('http://localhost:8080/api/users', {
+        axios.get('http://localhost:8080/api/users/details', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         })
             .then((response) => {
                 console.log(response);
+                setUser(response.data);
+
             })
             .catch((error) => {
                 console.log(error);
@@ -31,6 +35,12 @@ const Profile = () => {
     }
 
     useEffect(() => {
+
+        if (!localStorage.getItem('token')) {
+            navigate('/');
+        }
+
+        axiosGetUser();
         const handleWindowResize = () => {
             setScreenWidth(window.innerWidth);
         };
@@ -40,6 +50,13 @@ const Profile = () => {
             window.removeEventListener('resize', handleWindowResize);
         };
     }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+
+
+    }
 
     const isMobile = screenWidth <= 500;
 
@@ -54,9 +71,9 @@ const Profile = () => {
                             <h1 className='header'>Profile</h1>
                             <p className='subtext'>just your profile</p>
                         </div>
-                        <Link to='/'>
-                            <button className='button__profile'>logout</button>
-                        </Link>
+                        
+                            <button className='button__profile' onClick={handleLogout}>logout</button>
+                        
                     </div>
 
                     <div className='profile'>
@@ -65,8 +82,8 @@ const Profile = () => {
                         </div>
 
                         <div className="profile__texts">
-                            <h2 className='header'>Triss Merigold</h2>
-                            <p className='subtext'>triss.merigold@gmail.com</p>
+                            <h2 className='header'>{user.firstName} {user.lastName}</h2>
+                            <p className='subtext'>{user.email}</p>
                         </div>
                     </div>
                 </section>

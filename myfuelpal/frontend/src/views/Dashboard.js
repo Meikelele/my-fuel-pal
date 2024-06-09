@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import Layout from './Layout';
 import '../styles/global.css';
 import '../styles/dashboard.css';
 
@@ -18,6 +17,7 @@ const Dashboard = () => {
     const [fuelnote, setFuelnote] = useState([]);
     const [cars, setCars] = useState([]);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const navigate = useNavigate();
 
     const axiosGetCars = () => {
         axios.get('http://localhost:8080/api/vehicles', {
@@ -50,6 +50,9 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/');
+        }
         axiosGetCars();
         axiosGetFuelnotes();
         const handleWindowResize = () => {

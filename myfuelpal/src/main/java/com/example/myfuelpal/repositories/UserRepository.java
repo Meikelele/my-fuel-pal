@@ -1,9 +1,12 @@
 package com.example.myfuelpal.repositories;
 
 import com.example.myfuelpal.entities.User;
+import com.example.myfuelpal.entities.Vehicle;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository

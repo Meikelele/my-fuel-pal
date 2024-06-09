@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-
-import Layout from './Layout';
+import { useNavigate } from 'react-router-dom';
 import '../styles/global.css';
 import '../styles/dashboard.css';
 
@@ -34,6 +33,7 @@ const MyCars = () => {
     
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+    const navigate = useNavigate();
 
     const open = () => setIsOpen(true);
     const close = () => setIsOpen(false);
@@ -41,6 +41,9 @@ const MyCars = () => {
     const [car, setCar] = useState([]);
 
     useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/');
+        }
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 500);
         };
