@@ -13,10 +13,13 @@ import FuelNote from '../components/FuelNote';
 import MobileMenu from '../components/MobileMenu';
 
 const Dashboard = () => {
+
+
+    const [fuelnote, setFuelnote] = useState([]);
     const [cars, setCars] = useState([]);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-    const funkcjaAXIOS = () => {
+    const axiosGetCars = () => {
         axios.get('http://localhost:8080/api/vehicles', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -31,8 +34,24 @@ const Dashboard = () => {
         });
     };
 
+    const axiosGetFuelnotes = () => {
+        axios.get('http://localhost:8080/api/fuelnotes', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then((response) => {
+            console.log(response);
+            setFuelnote(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
     useEffect(() => {
-        funkcjaAXIOS();
+        axiosGetCars();
+        axiosGetFuelnotes();
         const handleWindowResize = () => {
             setScreenWidth(window.innerWidth);
         };
@@ -86,12 +105,16 @@ const Dashboard = () => {
                             </Link>
                         </div>
                         <section className='content__tiles'>
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
+                            {fuelnote.map((fuelnote, index) => (
+                                <FuelNote
+                                    key={index}
+                                    price={fuelnote.price}
+                                    liters={fuelnote.liters}
+                                    time={fuelnote.time}
+                                    date={fuelnote.kalendarz}
+                                    description={fuelnote.description}
+                                />
+                            ))}
                         </section>
                         <JustLine />
                     </section>

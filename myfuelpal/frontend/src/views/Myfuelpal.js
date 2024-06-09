@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import axios from 'axios';
 
-import Layout from './Layout';
 import '../styles/global.css';
 import '../styles/dashboard.css';
 
@@ -18,7 +18,26 @@ const MyFuelPal = () => {
     const open = () => setIsOpen(true);
     const close = () => setIsOpen(false);
 
+    const funkcjaAXIOS = () => {
+        axios.get('http://localhost:8080/api/fuelnotes', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then((response) => {
+            console.log(response);
+            setFuelnote(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
+    const [fuelnote, setFuelnote] = useState([]);
+
     useEffect(() => {
+        funkcjaAXIOS();
+
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 500);
         };
@@ -27,38 +46,40 @@ const MyFuelPal = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    return (   
-        <Layout>   
-            <main>
-                <Menu />
-                <div className='submain'>
-                    <section className='content'>
-                        
-                        {/* MyCars section */}
-                        <div className='content__header'>
-                            <div className='content__header__texts'>
-                                <h1 className='header'>MyFuelpal</h1>
-                                <p className='subtext'>just your fuelpal</p>
-                            </div>
-                            <button className='button__viewall' onClick={open}>Add new</button>
+    return (
+        <main>
+            <Menu />
+            <div className='submain'>
+                <section className='content'>
+                    {/* MyCars section */}
+                    <div className='content__header'>
+                        <div className='content__header__texts'>
+                            <h1 className='header'>MyFuelpal</h1>
+                            <p className='subtext'>just your fuelpal</p>
                         </div>
-                        
-                        <section className='content__tiles'>
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                            <FuelNote />
-                        </section>
-                        <JustLine />
+                        <button className='button__viewall' onClick={open}>Add new</button>
+                    </div>
+                    
+                    <section className='content__tiles'>
+                        {fuelnote.map((fuelnote, index) => (
+                            <FuelNote
+                                key={index}
+                                price={fuelnote.price}
+                                liters={fuelnote.liters}
+                                time={fuelnote.time}
+                                date={fuelnote.kalendarz}
+                                description={fuelnote.description}
+                            />
+                        ))}
                     </section>
-                </div>
-                {isMobile && <MobileMenu />}
-            </main>
-
+                    <JustLine />
+                </section>
+            </div>
+            {isMobile && <MobileMenu />}
             <AnimatePresence>
                 {isOpen && <AddNoteModal handleClose={close} />}
             </AnimatePresence>
-        </Layout>     
+        </main>
     );
 }
 

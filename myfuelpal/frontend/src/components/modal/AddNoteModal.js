@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import Backdrop from './backdrop/backdrop';
-import StyledInput from '../../components/StyledInput';
-import Button from '../../components/Button';
-
 import './modal.css';
 
 // animacja Modala
@@ -30,8 +28,41 @@ const dropIn = {
 };
 
 const AddNoteModal = ({ handleClose }) => {
+    const [price, setPrice] = useState('');
+    const [liters, setLiters] = useState('');
+    const [time, setTime] = useState('');
+    const [kal, setKal] = useState('');
+    const [description, setDescription] = useState('');
+
+    const funPostAXIOS = () => {
+
+        const token = localStorage.getItem('token');
+        axios.post('http://localhost:8080/api/fuelnotes', 
+            {
+                price: price,
+                liters: liters,
+                kalendarz: kal,
+                time: time + ':00',
+                description: description
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
 
     const handleAddFuelpal= () => {
+        console.log(kal);
+        console.log(time);
+        funPostAXIOS();
         handleClose();
     };
 
@@ -46,24 +77,14 @@ const AddNoteModal = ({ handleClose }) => {
                 exit='exit'
             >
                <section className='modal__section'>   
-                                <StyledInput type='text' text='*Price' />
-                                
-                                <StyledInput type='text' text='*Liters' />
-                                    {/* CZAS i DATA maja sie domyslnie ustawiac na aktualna */}
-                                <StyledInput type='time' text='*Time' />
-                                <StyledInput type='date' text='*Date' />
-                                <select name='car__select'>
-                                    {/* POBIERANIE Z BAZY DANYCH */}
-                                    {/* NIECH SIE USTAWIA OSTATNIO DODANE AUTO ??? */}
-                                    <option>*select</option>
-                                    <option>Nickname_1</option>
-                                    <option>Nickname_2</option>
-                                    <option>Nickname_3</option>
-                                    <option>Nickname_4</option>
-                                </select>
-                                <textarea name="description" rows="5" placeholder="Some note..."></textarea>
+                                <input type='text' placeholder='*Price' value={price} onChange={(e) => setPrice(e.target.value)} />
+                                <input type='text' placeholder='*Liters' value={liters} onChange={(e) => setLiters(e.target.value)} />
+                                <input type='time' placeholder='*Time' value={time} onChange={(e) => setTime(e.target.value)} />
+                                <input type='date' placeholder='*Date' value={kal} onChange={(e) => setKal(e.target.value)} />
+                                <textarea name="description" rows="5" placeholder="Some note..." value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                                 <p className='subtext'>*not null areas</p>
-                                <button className='button__close' onClick={handleClose}>Save and close</button>
+                                <button className='button__close' onClick={handleAddFuelpal}>Save and close</button>
+
                         </section>
             </motion.div>
         </Backdrop>
