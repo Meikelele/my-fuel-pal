@@ -1,6 +1,9 @@
 package com.example.myfuelpal.controllers;
 
+import com.example.myfuelpal.config.JwtService;
+import com.example.myfuelpal.entities.User;
 import com.example.myfuelpal.entities.Vehicle;
+import com.example.myfuelpal.repositories.UserRepository;
 import com.example.myfuelpal.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +19,22 @@ public class VehicleController {
     @Autowired
     private VehicleRepository vehicleRepository;
 
-    // Get all vehicles
+    @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private UserRepository UserRepository;
+
+
+
+
+
+
     @GetMapping
-    public List<Vehicle> getAllVehicles() {
-        return vehicleRepository.findAll();
+    public List<Vehicle> getAllVehicles(@RequestHeader("Authorization") String token) {
+        token = token.substring(7);
+        User user = UserRepository.findByEmail(jwtService.extractEmail(token)).get();
+        return vehicleRepository.findAllByUser(user);
     }
 
     // Get vehicle by ID
@@ -35,7 +50,10 @@ public class VehicleController {
 
     // Create new vehicle
     @PostMapping
-    public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
+    public Vehicle createVehicle(@RequestHeader("Authorization") String token, @RequestBody Vehicle vehicle) {
+        token = token.substring(7);
+        User user = UserRepository.findByEmail(jwtService.extractEmail(token)).get();
+        vehicle.setUser(user);
         return vehicleRepository.save(vehicle);
     }
 

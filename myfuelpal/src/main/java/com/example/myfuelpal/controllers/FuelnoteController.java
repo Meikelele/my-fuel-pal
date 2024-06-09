@@ -1,7 +1,11 @@
 package com.example.myfuelpal.controllers;
 
+import com.example.myfuelpal.config.JwtService;
+import com.example.myfuelpal.entities.User;
 import com.example.myfuelpal.entities.Fuelnote;
 import com.example.myfuelpal.repositories.FuelnoteRepository;
+import com.example.myfuelpal.repositories.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +20,18 @@ public class FuelnoteController {
     @Autowired
     private FuelnoteRepository fuelnoteRepository;
 
+     @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private UserRepository UserRepository;
+
     // Get all fuelnotes
     @GetMapping
-    public List<Fuelnote> getAllFuelnotes() {
-        return fuelnoteRepository.findAll();
+    public List<Fuelnote> getAllFuelnotes(@RequestHeader("Authorization") String token) {
+        token = token.substring(7);
+        User user = UserRepository.findByEmail(jwtService.extractEmail(token)).get();
+        return fuelnoteRepository.findAllByUser(user);
     }
 
     // Get fuelnote by ID
@@ -35,7 +47,10 @@ public class FuelnoteController {
 
     // Create new fuelnote
     @PostMapping
-    public Fuelnote createFuelnote(@RequestBody Fuelnote fuelnote) {
+    public Fuelnote createFuelnote(@RequestHeader("Authorization") String token, @RequestBody Fuelnote fuelnote) {
+        token = token.substring(7);
+        User user = UserRepository.findByEmail(jwtService.extractEmail(token)).get();
+        fuelnote.setUser(user);
         return fuelnoteRepository.save(fuelnote);
     }
 
