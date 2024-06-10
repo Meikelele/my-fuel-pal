@@ -33,6 +33,7 @@ const AddNoteModal = ({ handleClose }) => {
     const [time, setTime] = useState('');
     const [kal, setKal] = useState('');
     const [description, setDescription] = useState('');
+    const [error, setError] = useState('');
 
     const funPostAXIOS = () => {
 
@@ -60,8 +61,10 @@ const AddNoteModal = ({ handleClose }) => {
     }
 
     const handleAddFuelpal= () => {
-        console.log(kal);
-        console.log(time);
+        if (liters === '' || price === '' || time === '' || kal === '') {
+            setError('Fill all required fields');
+            return;
+        }
         funPostAXIOS();
         handleClose();
     };
@@ -83,6 +86,7 @@ const AddNoteModal = ({ handleClose }) => {
                                 <input type='date' placeholder='*Date' value={kal} onChange={(e) => setKal(e.target.value)} />
                                 <textarea name="description" rows="5" placeholder="Some note..." value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                                 <p className='subtext'>*not null areas</p>
+                                {error && <p className='error'>{error}</p>}
                                 <button className='button__close' onClick={handleAddFuelpal}>Save and close</button>
 
                         </section>

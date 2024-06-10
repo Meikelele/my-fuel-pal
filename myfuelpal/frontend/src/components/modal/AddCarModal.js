@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import Backdrop from './backdrop/backdrop';
-
 import './modal.css';
 
 // animacja Modala
@@ -37,6 +36,7 @@ const AddCarModal = ({ handleClose }) => {
     const [country, setCountry] = useState('');
     const [fuel, setFuel] = useState('');
     const [description, setDescription] = useState('');
+    const [error, setError] = useState('');
 
     const funPostAXIOS = () => {
         const token = localStorage.getItem('token');
@@ -64,10 +64,27 @@ const AddCarModal = ({ handleClose }) => {
             console.log(error);
         });
     }
-    
-    
+
+    const handleCourseChange = (e) => {
+        const value = e.target.value;
+        if (!isNaN(value)) {
+            setCourse(value);
+            setError('');
+        } else {
+            setCourse('');
+            setError('Enter valid course');
+        }
+    }
 
     const handleAddCar = () => {
+        if (course === '') {
+            setError('Enter valid course');
+            return;
+        }
+        if (nickname === '' || brand === '' || model === '' || licenseNumber === '' || country === '' || fuel === '') {
+            setError('Fill all required fields');
+            return;
+        }
         funPostAXIOS();
         handleClose();
     };
@@ -82,22 +99,20 @@ const AddCarModal = ({ handleClose }) => {
                 animate='visible'
                 exit='exit'
             >
-                
-                        <section className='modal__section'>               
-                                <h2>Add new car</h2>
-                                
-                                <input type='text' placeholder='*Nickname' value={nickname} onChange={(e) => setNickname(e.target.value)} />
-                                <input type='text' placeholder='*Brand' value={brand} onChange={(e) => setBrand(e.target.value)} />
-                                <input type='text' placeholder='*Model' value={model} onChange={(e) => setModel(e.target.value)} />
-                                <input type='text' placeholder='*Course' value={course} onChange={(e) => setCourse(e.target.value)} />
-                                <input type='text' placeholder='*License number' value={licenseNumber} onChange={(e) => setLicenseNumber(e.target.value)} />
-                                <input type='text' placeholder='*Country' value={country} onChange={(e) => setCountry(e.target.value)} />
-                                <input type='text' placeholder='*Fuel' value={fuel} onChange={(e) => setFuel(e.target.value)} />
-
-                                <textarea name="description" rows="5" placeholder="Some note..." value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-                                <p className='subtext'>*not null areas</p>
-                                <button className='button__close' onClick={handleAddCar}>Save and close</button>
-                        </section>
+                <section className='modal__section'>               
+                    <h2>Add new car</h2>
+                    <input type='text' placeholder='*Nickname' value={nickname} onChange={(e) => setNickname(e.target.value)} />
+                    <input type='text' placeholder='*Brand' value={brand} onChange={(e) => setBrand(e.target.value)} />
+                    <input type='text' placeholder='*Model' value={model} onChange={(e) => setModel(e.target.value)} />
+                    <input type='text' placeholder='*Course' value={course} onChange={handleCourseChange} />
+                    <input type='text' placeholder='*License number' value={licenseNumber} onChange={(e) => setLicenseNumber(e.target.value)} />
+                    <input type='text' placeholder='*Country' value={country} onChange={(e) => setCountry(e.target.value)} />
+                    <input type='text' placeholder='*Fuel' value={fuel} onChange={(e) => setFuel(e.target.value)} />
+                    <textarea name="description" rows="5" placeholder="Some note..." value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                    <p className='subtext'>*not null areas</p>
+                    {error && <p className='error'>{error}</p>}
+                    <button className='button__close' onClick={handleAddCar}>Save and close</button>
+                </section>
             </motion.div>
         </Backdrop>
     );
