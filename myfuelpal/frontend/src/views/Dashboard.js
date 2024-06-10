@@ -10,14 +10,18 @@ import JustLine from '../components/JustLine';
 import CarTile from '../components/CarTile';
 import FuelNote from '../components/FuelNote';
 import MobileMenu from '../components/MobileMenu';
+import AddCarModal from '../components/modal/AddCarModal';
+import { AnimatePresence } from 'framer-motion';
 
 const Dashboard = () => {
-
-
     const [fuelnote, setFuelnote] = useState([]);
     const [cars, setCars] = useState([]);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
 
     const axiosGetCars = () => {
         axios.get('http://localhost:8080/api/vehicles', {
@@ -47,7 +51,7 @@ const Dashboard = () => {
         .catch((error) => {
             console.log(error);
         });
-    }
+    };
 
     useEffect(() => {
         if (!localStorage.getItem('token')) {
@@ -62,69 +66,70 @@ const Dashboard = () => {
         return () => {
             window.removeEventListener('resize', handleWindowResize);
         };
-    }, []);
+    }, [navigate]);
 
     const isMobile = screenWidth <= 500;
 
-    return (      
-            <main>
-                <Menu />
-                <div className='submain'>
-                    <section className='content'>
-                        {/* MyCars section */}
-                        <div className='content__header'>
-                            <div className='content__header__texts'>
-                                <h1 className='header'>MyCars</h1>
-                                <p className='subtext'>just your cars</p>
-                            </div>
-                            <Link to='/mycars'>
-                                <button className='button__viewall'>View all</button>
-                            </Link>
+    return (
+        <main>
+            <Menu />
+            <div className='submain'>
+                <section className='content'>
+                    {/* MyCars section */}
+                    <div className='content__header'>
+                        <div className='content__header__texts'>
+                            <h1 className='header'>MyCars</h1>
+                            <p className='subtext'>just your cars</p>
                         </div>
-                        <section className='content__tiles'>
-                            {cars.map((car, index) => (
-                                <CarTile
-                                    key={index}
-                                    nickname={car.nickname}
-                                    brand={car.brand}
-                                    model={car.model}
-                                    fuel={car.fuel}
-                                    mileage={car.course}
-                                    country={car.country}
-                                    number={car.licensePlate}
-                                    desc = {car.description}
-                                />
-                            ))}
-                        </section>
-                        <JustLine />
-
-                        {/* MyFuelNote section */}
-                        <div className='content__header'>
-                            <div className='content__header__texts'>
-                                <h1 className='header'>MyFuelPal</h1>
-                                <p className='subtext'>just your fuelnotes</p>
-                            </div>
-                            <Link to='/myfuelpal'>
-                                <button className='button__viewall'>View all</button>
-                            </Link>
-                        </div>
-                        <section className='content__tiles'>
-                            {fuelnote.map((fuelnote, index) => (
-                                <FuelNote
-                                    key={index}
-                                    price={fuelnote.price}
-                                    liters={fuelnote.liters}
-                                    time={fuelnote.time}
-                                    date={fuelnote.kalendarz}
-                                    description={fuelnote.description}
-                                />
-                            ))}
-                        </section>
-                        <JustLine />
+                        <button className='button__viewall' onClick={openModal}>Add new</button>
+                    </div>
+                    <section className='content__tiles'>
+                        {cars.map((car, index) => (
+                            <CarTile
+                                key={index}
+                                nickname={car.nickname}
+                                brand={car.brand}
+                                model={car.model}
+                                fuel={car.fuel}
+                                mileage={car.course}
+                                country={car.country}
+                                number={car.licensePlate}
+                                desc={car.description}
+                            />
+                        ))}
                     </section>
-                </div>
-                {isMobile && <MobileMenu />}
-            </main>    
+                    <JustLine />
+
+                    {/* MyFuelNote section */}
+                    <div className='content__header'>
+                        <div className='content__header__texts'>
+                            <h1 className='header'>MyFuelPal</h1>
+                            <p className='subtext'>just your fuelnotes</p>
+                        </div>
+                        <Link to='/myfuelpal'>
+                            <button className='button__viewall'>View all</button>
+                        </Link>
+                    </div>
+                    <section className='content__tiles'>
+                        {fuelnote.map((fuelnote, index) => (
+                            <FuelNote
+                                key={index}
+                                price={fuelnote.price}
+                                liters={fuelnote.liters}
+                                time={fuelnote.time}
+                                date={fuelnote.kalendarz}
+                                description={fuelnote.description}
+                            />
+                        ))}
+                    </section>
+                    <JustLine />
+                </section>
+            </div>
+            {isMobile && <MobileMenu />}
+            <AnimatePresence>
+                {isOpen && <AddCarModal handleClose={closeModal} updateCarList={axiosGetCars} />}
+            </AnimatePresence>
+        </main>
     );
 };
 
