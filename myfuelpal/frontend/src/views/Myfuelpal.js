@@ -16,6 +16,7 @@ const MyFuelPal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
     const navigate = useNavigate();
+    const [fuelnote, setFuelnote] = useState([]);
 
     const open = () => setIsOpen(true);
     const close = () => setIsOpen(false);
@@ -35,8 +36,6 @@ const MyFuelPal = () => {
         });
     }
 
-    const [fuelnote, setFuelnote] = useState([]);
-
     useEffect(() => {
         if (!localStorage.getItem('token')) {
             navigate('/');
@@ -49,14 +48,13 @@ const MyFuelPal = () => {
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [navigate]);
 
     return (
         <main>
             <Menu />
             <div className='submain'>
                 <section className='content'>
-                    {/* MyCars section */}
                     <div className='content__header'>
                         <div className='content__header__texts'>
                             <h1 className='header'>MyFuelpal</h1>
@@ -82,7 +80,7 @@ const MyFuelPal = () => {
             </div>
             {isMobile && <MobileMenu />}
             <AnimatePresence>
-                {isOpen && <AddNoteModal handleClose={close} />}
+                {isOpen && <AddNoteModal handleClose={close} updateFuelList={funkcjaAXIOS} />}
             </AnimatePresence>
         </main>
     );

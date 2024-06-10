@@ -5,7 +5,6 @@ import axios from 'axios';
 import Backdrop from './backdrop/backdrop';
 import './modal.css';
 
-// animacja Modala
 const dropIn = {
     hidden: {
         y: '-100vh',
@@ -27,7 +26,7 @@ const dropIn = {
     }
 };
 
-const AddNoteModal = ({ handleClose }) => {
+const AddNoteModal = ({ handleClose, updateFuelList }) => {
     const [price, setPrice] = useState('');
     const [liters, setLiters] = useState('');
     const [time, setTime] = useState('');
@@ -36,7 +35,6 @@ const AddNoteModal = ({ handleClose }) => {
     const [error, setError] = useState('');
 
     const funPostAXIOS = () => {
-
         const token = localStorage.getItem('token');
         axios.post('http://localhost:8080/api/fuelnotes', 
             {
@@ -54,19 +52,20 @@ const AddNoteModal = ({ handleClose }) => {
         )
         .then((response) => {
             console.log(response);
+            updateFuelList();
+            handleClose();
         })
         .catch((error) => {
             console.log(error);
         });
     }
 
-    const handleAddFuelpal= () => {
+    const handleAddFuelpal = () => {
         if (liters === '' || price === '' || time === '' || kal === '') {
             setError('Fill all required fields');
             return;
         }
         funPostAXIOS();
-        handleClose();
     };
 
     useEffect(() => {
@@ -88,17 +87,16 @@ const AddNoteModal = ({ handleClose }) => {
                 animate='visible'
                 exit='exit'
             >
-               <section className='modal__section'>   
-                                <input type='text' placeholder='*Price' value={price} onChange={(e) => setPrice(e.target.value)} />
-                                <input type='text' placeholder='*Liters' value={liters} onChange={(e) => setLiters(e.target.value)} />
-                                <input type='time' placeholder='*Time' value={time} onChange={(e) => setTime(e.target.value)} />
-                                <input type='date' placeholder='*Date' value={kal} onChange={(e) => setKal(e.target.value)} />
-                                <textarea name="description" rows="5" placeholder="Some note..." value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-                                <p className='subtext'>*not null areas</p>
-                                {error && <p className='error'>{error}</p>}
-                                <button className='button__close' onClick={handleAddFuelpal}>Save and close</button>
-
-                        </section>
+                <section className='modal__section'>   
+                    <input type='text' placeholder='*Price' value={price} onChange={(e) => setPrice(e.target.value)} />
+                    <input type='text' placeholder='*Liters' value={liters} onChange={(e) => setLiters(e.target.value)} />
+                    <input type='time' placeholder='*Time' value={time} onChange={(e) => setTime(e.target.value)} />
+                    <input type='date' placeholder='*Date' value={kal} onChange={(e) => setKal(e.target.value)} />
+                    <textarea name="description" rows="5" placeholder="Some note..." value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                    <p className='subtext'>*not null areas</p>
+                    {error && <p className='error'>{error}</p>}
+                    <button className='button__close' onClick={handleAddFuelpal}>Save and close</button>
+                </section>
             </motion.div>
         </Backdrop>
     );
