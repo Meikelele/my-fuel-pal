@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Backdrop from './backdrop/backdrop';
@@ -68,6 +68,15 @@ const AddNoteModal = ({ handleClose }) => {
         funPostAXIOS();
         handleClose();
     };
+
+    useEffect(() => {
+        const now = new Date();
+        const formattedDate = now.toISOString().slice(0, 10);
+        const formattedTime = now.toTimeString().slice(0, 5);
+
+        setKal(formattedDate);
+        setTime(formattedTime);
+    }, []);
 
     return (
         <Backdrop onClick={handleClose}>
