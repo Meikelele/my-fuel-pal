@@ -92,6 +92,7 @@ const Dashboard = () => {
                                     mileage={car.course}
                                     country={car.country}
                                     number={car.licensePlate}
+                                    desc = {car.description}
                                 />
                             ))}
                         </section>

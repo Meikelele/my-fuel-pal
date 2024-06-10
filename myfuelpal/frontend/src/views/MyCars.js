@@ -77,10 +77,9 @@ const MyCars = () => {
                                     nickname={car.nickname}
                                     brand={car.brand}
                                     model={car.model}
-                                    // engine={car.engine}
                                     fuel={car.fuel}
                                     mileage={car.course}
-                                    
+                                    desc = {car.description}
                                     country={car.country}
                                     number={car.licensePlate}
                                 />
