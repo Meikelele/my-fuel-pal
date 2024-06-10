@@ -77,7 +77,7 @@ const SignUp = () => {
                     onChange={(e) => setSurname(e.target.value)}
                 />
                 <input
-                    type='text'
+                    type='email'
                     placeholder='email@example.com'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -94,7 +94,7 @@ const SignUp = () => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                {error && <div className='error-text'>{error}</div>}
+                {error && <p className='error'>{error}</p>}
                 <div className='gap' />
                 <button type='submit' className='button__signup'>Sign Up</button>
             </form>

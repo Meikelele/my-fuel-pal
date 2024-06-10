@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import config from '../config';
 import '../styles/signin.css';
 import '../components/styles/button.css';
 
@@ -59,7 +58,7 @@ const SignIn = () => {
 
             <form className='signin__form' onSubmit={handleSubmit}>
                 <input
-                    type='text'
+                    type='email'
                     placeholder='email@example.com'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -70,7 +69,7 @@ const SignIn = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                {error && <div className='error-text login-error'>{error}</div>}
+                {error && <p className='error'>{error}</p>}
                 <div className='gap' />
                 <button type='submit' className='button__login'>Login</button>
             </form>
