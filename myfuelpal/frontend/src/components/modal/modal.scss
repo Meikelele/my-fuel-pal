@@ -14,7 +14,14 @@
     &__section {
         @include flexCenter(column); 
         padding-bottom: 1rem;
-        padding-top: 1rem;         
+        padding-top: 1rem; 
+        
+        &__header {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            
+        }
     }
 
 

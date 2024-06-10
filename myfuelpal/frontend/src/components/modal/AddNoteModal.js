@@ -87,7 +87,8 @@ const AddNoteModal = ({ handleClose, updateFuelList }) => {
                 animate='visible'
                 exit='exit'
             >
-                <section className='modal__section'>   
+                <section className='modal__section'>  
+                    <h2 className='modal__section__header'>Add note</h2> 
                     <input type='text' placeholder='*Price' value={price} onChange={(e) => setPrice(e.target.value)} />
                     <input type='text' placeholder='*Liters' value={liters} onChange={(e) => setLiters(e.target.value)} />
                     <input type='time' placeholder='*Time' value={time} onChange={(e) => setTime(e.target.value)} />
