@@ -26,11 +26,24 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
+//    private static final String[] WHITE_LIST_URL = {
+//        "/api/auth/**",
+//        "/api/vehicles/**",
+//        "/api/fuelnotes/**"
+//};
+
     private static final String[] WHITE_LIST_URL = {
-        "/api/auth/**",
-        "/api/vehicles/**",
-        "/api/fuelnotes/**"
-};
+            "/",
+            "/index.html",
+            "/static/**",
+            "/favicon.ico",
+            "/logo192.png",
+            "/manifest.json",
+            "/api/auth/**",
+            "/api/vehicles/**",
+            "/api/fuelnotes/**"
+    };
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

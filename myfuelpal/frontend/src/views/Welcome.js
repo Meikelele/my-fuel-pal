@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../styles/welcome.css';
 import Button from '../components/Button';
-import Logo from '../images/log.svg';
+// import Logo from '../images/log.svg';
 import { Link, useNavigate } from "react-router-dom";
 
 const Welcome = () => {
