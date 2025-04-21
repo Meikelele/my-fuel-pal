@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/my-fuel-pal.iml" filepath="$PROJECT_DIR$/.idea/my-fuel-pal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myfuelpal/myfuelpal.iml" filepath="$PROJECT_DIR$/myfuelpal/myfuelpal.iml" />
     </modules>
   </component>
 </project>
